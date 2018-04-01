@@ -1,27 +1,20 @@
 /*
  * uartHZ.c
  *
- *  Author: HZ
+ *  Author:  Hossein Zamanian (hznewresearch@gmail.com)
  */ 
 #include <stdio.h>
 #define F_CPU 16000000
 #define BAUD 9600
-#include <avr/pgmspace.h>
-#include <math.h>
 #include <util/delay.h>
-#include <stdio.h>
-#include <avr/eeprom.h>
-#include <avr/wdt.h> // watchdog header file
 #include <stdio.h>
 #include <avr/io.h>
 #include <util/setbaud.h>
-#include <avr/io.h>
 #include <stdlib.h>
 extern volatile int uart_flag;
- FILE * uart_str;
-
-
-
+#include "uartHZ.h"
+static int uart_putchar(char c, FILE *stream) ;
+char ReceivedByte=0;
  static int uart_putchar(char c, FILE *stream) {
 	 if (c == '\n') {
 		 uart_putchar('\r', stream);
@@ -49,13 +42,7 @@ extern volatile int uart_flag;
 	 }
  }
  
- 
 
 
-//ISR(SIG_USART_RECV)
-//{
-	//char ReceivedByte;
-	//ReceivedByte = UDR0; // Fetch the received byte value into the variable "ByteReceived"
-	//UDR0 = ReceivedByte; // Echo back the received byte back to the computer
-	//uart_flag =~ uart_flag;
-//}
+
+
